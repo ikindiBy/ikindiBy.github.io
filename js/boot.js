@@ -12,6 +12,10 @@ Game.Boot.prototype.create = function(){
     button = game.add.button(game.world.centerX, game.world.centerY+80, 'button',
     	this.start,this,this,this);
     button.anchor.set(0.5);
+    controlText = game.add.text(game.world.centerX, game.world.centerY+150, "To move use '<' and  ''>', to jump - 'space', and for atack - 'Q'",
+    	{font:"16px Arial", fill:"#fff", align:"center"});
+    controlText.anchor.set(0.5);
+
 };
 
 Game.Boot.prototype.start = function(){

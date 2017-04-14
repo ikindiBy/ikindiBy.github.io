@@ -99,7 +99,7 @@ Game.LevelTwo.prototype.create = function(game){
 
 	wolf_0 = new EnemyWolf(0,game,200, player.y+120,70);
 	wolf_1 = new EnemyWolf(0,game,920, player.y+120,60);
-	wolf_2 = new EnemyWolf(0,game,2600, player.y+120,50);
+	wolf_2 = new EnemyWolf(0,game,2600, player.y+60,100);
 	
 	arrows = game.add.group();
 	arrows.enableBody = true;
@@ -159,9 +159,6 @@ Game.LevelTwo.prototype.update = function(){
 		player.body.velocity.y = -this.speedJump;
 	};
 
-	// if(checkOverlap(player, wolf_1.wolf) ){
- //    	this.removeLife(player);
-	// };
 
 	if(controls.shoot.isDown){
 		if (!this.lastDirection) {
@@ -177,31 +174,14 @@ Game.LevelTwo.prototype.update = function(){
 	if(checkOverlap(arrows,wolf_1.wolf)) wolf_1.wolf.kill();	
 	if(checkOverlap(arrows,wolf_0.wolf)) wolf_0.wolf.kill();	
 	if(checkOverlap(arrows,wolf_2.wolf)) wolf_2.wolf.kill();	
-// console.log (this.time.now + ' - ' + timeStartGame);
+
 
 var a = this.time.now - timeStartGame;
-console.log (a);
-    if ((a/2000)%2 == 0){
-		console.log (this.time.now - timeStartGame);
-		 this.rightDirectionWolf = true;
-	} else if (a%2000 == 0 && a/2000 == 3) {
-		this.rightDirectionWolf = false;
-		timeStartGame = this.time.now ;
-	};
-
-	if ((this.time.now - timeStartGame) >= 2000 ){
-		// if (this.rightDirectionWolf ){
-
-			console.log ( this.rightDirectionWolf, wolf_0.wolf.x) ;
+	if (a >= 2000 && a <4000){
 		wolf_0.wolf.animations.play('walk_L');
 		wolf_1.wolf.animations.play('walk_L');
 		wolf_2.wolf.animations.play('walk_L');
-}
-// 		setTimeout(() => {
-// timeStartGame = this.time.now;
-//  }, 2000);
-	
-	else {
+} else {
 		wolf_0.wolf.animations.play('walk_R');
 	}
 };
