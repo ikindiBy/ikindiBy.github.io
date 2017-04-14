@@ -174,7 +174,7 @@ Game.Main.prototype.update = function(){
 	if(checkOverlap(arrows,wolf_2.wolf)) wolf_2.wolf.kill();	
 
 var a = this.time.now - timeStartGame;
-	if (a >= i*2000 && a <i*4000){
+	if (a >= 2000 && a <4000){
 		wolf_0.wolf.animations.play('walk_L');
 		wolf_1.wolf.animations.play('walk_L');
 		wolf_2.wolf.animations.play('walk_L');
