@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+  <html>
+ <head>
+  <meta charset="utf-8">
+
+  <title>Game-first</title>
+   <script src="js/phaser.min.js"></script>
+   <script src="js/boot.js"></script>
+   <script src="js/preload.js"></script>
+   <script src="js/main.js"></script>
+   <script src="js/death.js"></script>
+   <script src="js/levelTwo.js"></script>
+   <link rel="stylesheet" type="text/css" href="css/main.css">
+
+  </head>
+ <body>
+<header> HUNTER </header>
+
+  <script>
+  	(function(){
+    game = new Phaser.Game(800, 510, Phaser.CANVAS,'');
+    game.state.add("Boot", Game.Boot);
+    game.state.add("Preload", Game.Preload);
+    game.state.add("Main", Game.Main);
+    game.state.add("Death", Game.Death);
+    game.state.add("LevelTwo", Game.LevelTwo);
+    game.state.start("Boot");
+  	})();
+  </script>
+
+  <div class="sreenSh"> </div> 
+  </body>
+</html>

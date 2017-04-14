@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="20" height="8" tilewidth="64" tileheight="64" nextobjectid="1">
+ <tileset firstgid="1" name="tileset" tilewidth="64" tileheight="64" tilecount="21" columns="7">
+  <image source="../../utils/tileset_64px.png" width="448" height="192"/>
+ </tileset>
+ <tileset firstgid="22" name="tileset" tilewidth="64" tileheight="64" tilecount="21" columns="7">
+  <image source="tileset.png" width="448" height="192"/>
+ </tileset>
+ <tileset firstgid="43" name="tileset" tilewidth="64" tileheight="64" tilecount="21" columns="7">
+  <image source="tileset.png" width="448" height="192"/>
+ </tileset>
+ <tileset firstgid="64" name="tileset" tilewidth="64" tileheight="64" tilecount="21" columns="7">
+  <image source="tileset.png" width="448" height="192"/>
+ </tileset>
+ <layer name="Слой тайлов 1" width="20" height="8">
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,22,23,24,27,24,24,23,0,0,0,0,22,24,23,28,
+1,2,26,2,2,40,37,40,41,40,40,38,23,23,23,23,38,39,38,40
+</data>
+ </layer>
+</map>
