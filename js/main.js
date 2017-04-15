@@ -1,14 +1,13 @@
 Game.Main = function(game){
 	var map, layer;
 	var player;
-	var platforms;
 	var cursors;
 	var jumpButton;
 	var cristals, scoreCrist;
 	this.score = 0;
 	var scoreText;
 	var lives;
-	var wolf_1;
+	var wolf_1,wolf_0,wolf_2;
 	this.speedPlayer = 300;
 	this.speedJump = 300;
 	var controls;
@@ -18,6 +17,7 @@ Game.Main = function(game){
 	var lastY, sound, timeStartGame;
 	this.rightDirectionWolf = false;
     this.level = 1;
+    this.arrWolfs = [];
 };
 
 	
@@ -99,6 +99,9 @@ Game.Main.prototype.create = function(game){
 	wolf_0 = new EnemyWolf(0,game,200, player.y+120,70);
 	wolf_1 = new EnemyWolf(0,game,820, player.y+120,160);
 	wolf_2 = new EnemyWolf(0,game,1080, player.y+60,160);
+	this.arrWolfs.push(wolf_0);
+	this.arrWolfs.push(wolf_1);
+	this.arrWolfs.push(wolf_2);
 	
 	arrows = game.add.group();
 	arrows.enableBody = true;
@@ -169,18 +172,20 @@ Game.Main.prototype.update = function(){
 		
 	};
 
-	if(checkOverlap(arrows,wolf_1.wolf)) wolf_1.wolf.kill();	
-	if(checkOverlap(arrows,wolf_0.wolf)) wolf_0.wolf.kill();	
-	if(checkOverlap(arrows,wolf_2.wolf)) wolf_2.wolf.kill();	
+	this.arrWolfs.forEach(function(item){
+	if(checkOverlap(arrows,item.wolf)) item.wolf.kill();	
+	});	
 
 var a = this.time.now - timeStartGame;
-	if (a >= 2000 && a <4000){
-		wolf_0.wolf.animations.play('walk_L');
-		wolf_1.wolf.animations.play('walk_L');
-		wolf_2.wolf.animations.play('walk_L');
-} else {
-		wolf_0.wolf.animations.play('walk_R');
-	}
+	if (a >= 2000 && a <4000 || a>= 6000 && a <8000){
+		this.arrWolfs.forEach(function(item){
+    	 item.wolf.animations.play('walk_L');
+    });
+    } else {
+		this.arrWolfs.forEach(function(item){
+    	item.wolf.animations.play('walk_R');
+   			});
+		}
 };
 
 Game.Main.prototype.killCristal = function(player, cristal){
@@ -255,6 +260,7 @@ EnemyWolf = function(index,game,x,y,distance){
 	this.wolf.body.allowGravity = false;
 
 	this.wolfTween = game.add.tween(this.wolf).to({x:this.wolf.x+distance},2000,'Linear',true,0,100,true);
+
 };
 
 checkOverlap = function(spriteA, spriteB){

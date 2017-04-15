@@ -8,7 +8,7 @@ Game.LevelTwo = function(game){
 	this.score = 0;
 	var scoreText;
 	var lives;
-	var wolf_0, wolf_1,wolf_2;
+	var wolf_0, wolf_1,wolf_2,wolf_3,wolf_4,wolf_5,wolf_6,wolf_7,wolf_8,wolf_9,wolf_10;
 	this.speedPlayer = 300;
 	this.speedJump = 300;
 	var controls;
@@ -16,6 +16,7 @@ Game.LevelTwo = function(game){
 	var arrows;
 	this.lastDirection = true;
 	var lastY, sound, timeStartGame;
+	this.arrWolfs=[];
 	this.rightDirectionWolf = false;
     this.level = 1;
 };
@@ -65,17 +66,18 @@ Game.LevelTwo.prototype.create = function(game){
 		shoot:this.input.keyboard.addKey(Phaser.Keyboard.Q)
 	};
 
-	platforms = game.add.physicsGroup();
-	platforms.create(100,400,'platform');
-	platforms.setAll('body.immovable', true);  //неподвижность платформ
-
 	cristals = game.add.physicsGroup();
 	cristals.create(250, 380, 'cristal');
 	cristals.create(400, 240, 'cristal');
 	cristals.create(530, 330, 'cristal');
 	cristals.create(650, 300, 'cristal');
-	cristals.create(900, 320, 'cristal');
-	cristals.create(800, 400, 'cristal');
+	cristals.create(900, 240, 'cristal');
+	cristals.create(800, 200, 'cristal');
+	cristals.create(1800, 240, 'cristal');
+	cristals.create(2800, 240, 'cristal');
+	cristals.create(2400, 240, 'cristal');
+	cristals.create(3000, 280, 'cristal');
+	cristals.create(3400, 240, 'cristal');
 	cristals.setAll('body.immovable', true);
 
 	lives = game.add.group();
@@ -97,9 +99,29 @@ Game.LevelTwo.prototype.create = function(game){
 	cursors = game.input.keyboard.createCursorKeys();
 	jumpButton = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
 
-	wolf_0 = new EnemyWolf(0,game,200, player.y+120,70);
-	wolf_1 = new EnemyWolf(0,game,920, player.y+120,60);
-	wolf_2 = new EnemyWolf(0,game,2600, player.y+60,170);
+	wolf_0 = new EnemyWolf(0,game,220, 424, 170);
+	wolf_1 = new EnemyWolf(0,game,500, 360,220);
+	wolf_2 = new EnemyWolf(0,game,950, 424,200);
+	wolf_3 = new EnemyWolf(0,game,1400, 360,80);
+	wolf_4 = new EnemyWolf(0,game,1580, 292,110);
+	wolf_5 = new EnemyWolf(0,game,1780, 292,100);
+	wolf_6 = new EnemyWolf(0,game,2200, 424,120);
+	wolf_7 = new EnemyWolf(0,game,2670, 360,120);
+	wolf_8 = new EnemyWolf(0,game,3050, 424,180);
+	wolf_9 = new EnemyWolf(0,game,3220, 424,120);
+	wolf_10 = new EnemyWolf(0,game,3420, 360,140);
+
+	this.arrWolfs.push(wolf_0);
+	this.arrWolfs.push(wolf_1);
+	this.arrWolfs.push(wolf_2);
+	this.arrWolfs.push(wolf_3);
+	this.arrWolfs.push(wolf_4);
+	this.arrWolfs.push(wolf_5);
+	this.arrWolfs.push(wolf_6);
+	this.arrWolfs.push(wolf_7);
+	this.arrWolfs.push(wolf_8);
+	this.arrWolfs.push(wolf_9);
+	this.arrWolfs.push(wolf_10);
 	
 	arrows = game.add.group();
 	arrows.enableBody = true;
@@ -171,19 +193,22 @@ Game.LevelTwo.prototype.update = function(){
 		
 	};
 
-	if(checkOverlap(arrows,wolf_1.wolf)) wolf_1.wolf.kill();	
-	if(checkOverlap(arrows,wolf_0.wolf)) wolf_0.wolf.kill();	
-	if(checkOverlap(arrows,wolf_2.wolf)) wolf_2.wolf.kill();	
-
+this.arrWolfs.forEach(function(item){
+if(checkOverlap(arrows,item.wolf)) item.wolf.kill();	
+});
 
 var a = this.time.now - timeStartGame;
-	if (a >= 2000 && a <4000){
-		wolf_0.wolf.animations.play('walk_L');
-		wolf_1.wolf.animations.play('walk_L');
-		wolf_2.wolf.animations.play('walk_L');
-} else {
-		wolf_0.wolf.animations.play('walk_R');
-	}
+	if (a >= 2000 && a <4000 || a>= 6000 && a <8000){
+		this.arrWolfs.forEach(function(item){
+    	item.wolf.animations.play('walk_L');
+    });
+    } else {
+		this.arrWolfs.forEach(function(item){
+    	item.wolf.animations.play('walk_R');
+    });
+	};
+
+	if (player.x == 3600) this.game.state.start("Boot");
 };
 
 Game.LevelTwo.prototype.killCristal = function(player, cristal){
@@ -249,12 +274,10 @@ EnemyWolf = function(index,game,x,y,distance){
 	this.wolf.animations.add('walk_L', [5,6,7,8],8,true);
 	this.wolf.anchor.setTo(0.5,0.5);
 	this.wolf.name = index.toString();
-
 	game.physics.enable(this.wolf,Phaser.Physics.ARCADE);
 	this.wolf.body.immovable = true;
 	this.wolf.body.collideWorldBounds = true;
 	this.wolf.body.allowGravity = false;
-
 	this.wolfTween = game.add.tween(this.wolf).to({x:this.wolf.x+distance},2000,'Linear',true,0,100,true);
 };
 
