@@ -8,7 +8,7 @@ Game.LevelTwo = function(game){
 	this.score = 0;
 	var scoreText;
 	var lives;
-	var enemies, wolf_1;
+	var wolf_0, wolf_1,wolf_2;
 	this.speedPlayer = 300;
 	this.speedJump = 300;
 	var controls;
@@ -99,7 +99,7 @@ Game.LevelTwo.prototype.create = function(game){
 
 	wolf_0 = new EnemyWolf(0,game,200, player.y+120,70);
 	wolf_1 = new EnemyWolf(0,game,920, player.y+120,60);
-	wolf_2 = new EnemyWolf(0,game,2600, player.y+60,100);
+	wolf_2 = new EnemyWolf(0,game,2600, player.y+60,170);
 	
 	arrows = game.add.group();
 	arrows.enableBody = true;

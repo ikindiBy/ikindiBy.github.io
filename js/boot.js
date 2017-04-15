@@ -6,7 +6,7 @@ Game.Boot.prototype.preload = function(){
 Game.Boot.prototype.create = function(){
 	this.game.canvas.id = 'canvas';
 	game.stage.backgroundColor = "#111122";
-    firstText = game.add.text(game.world.centerX, game.world.centerY, "To start game - press on wolf!",
+    firstText = game.add.text(game.world.centerX, game.world.centerY, "To start game - press on the wolf!",
     	{font:"32px Arial", fill:"#fff", align:"center"});
     firstText.anchor.set(0.5);
     button = game.add.button(game.world.centerX, game.world.centerY+80, 'button',
