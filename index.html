@@ -17,21 +17,6 @@
  <body>
 
 <header> HUNTER </header>
-  <script>
-  	(function(){
-    game = new Phaser.Game(800, 510, Phaser.CANVAS,'');
-    game.state.add("Boot", Game.Boot);
-    game.state.add("Preload", Game.Preload);
-    game.state.add("Main", Game.Main);
-    game.state.add("Death", Game.Death);
-    game.state.add("Win", Game.Win);
-    game.state.add("LevelTwo", Game.LevelTwo);
-    game.state.start("Boot");
-  	})();
-  </script>
-
-  <div class="qwe"></div>
-
     <div class="sreenSh">
         <h4>Shots and description of the game:</h4>
         <p> Your enemies are wolves, which walk on the hills. To kill them you should use your bow and arrows. You can shot in flying and in different directions simultaneously.</p>
@@ -48,7 +33,17 @@
     </div>
 <footer><h5>@2017 DEVELOPED BY ALEX F</h5></footer>
 
-
-
+  <script>
+  	(function(){
+    game = new Phaser.Game(800, 510, Phaser.CANVAS,'');
+    game.state.add("Boot", Game.Boot);
+    game.state.add("Preload", Game.Preload);
+    game.state.add("Main", Game.Main);
+    game.state.add("Death", Game.Death);
+    game.state.add("Win", Game.Win);
+    game.state.add("LevelTwo", Game.LevelTwo);
+    game.state.start("Boot");
+  	})();
+  </script>
   </body>
 </html>
