@@ -60,8 +60,6 @@ Game.LevelTwo.prototype.create = function(game){
 	player.animations.add('shooting', [12,13,14,15], 4,true);
 	this.camera.follow(player);
 	controls={
-		right:this.input.keyboard.addKey(Phaser.Keyboard.D ),
-		left:this.input.keyboard.addKey(Phaser.Keyboard.A ),
 		up:this.input.keyboard.addKey(Phaser.Keyboard.W),
 		shoot:this.input.keyboard.addKey(Phaser.Keyboard.Q)
 	};
@@ -193,9 +191,22 @@ Game.LevelTwo.prototype.update = function(){
 		
 	};
 
-this.arrWolfs.forEach(function(item){
-if(checkOverlap(arrows,item.wolf)) item.wolf.kill();	
-});
+
+    if(checkOverlap(arrows,wolf_0.wolf)) wolf_0.wolf.kill();
+    if(checkOverlap(arrows,wolf_1.wolf)) wolf_1.wolf.kill();
+    if(checkOverlap(arrows,wolf_2.wolf)) wolf_2.wolf.kill();
+    if(checkOverlap(arrows,wolf_3.wolf)) wolf_3.wolf.kill();
+    if(checkOverlap(arrows,wolf_4.wolf)) wolf_4.wolf.kill();
+    if(checkOverlap(arrows,wolf_5.wolf)) wolf_5.wolf.kill();
+    if(checkOverlap(arrows,wolf_6.wolf)) wolf_6.wolf.kill();
+    if(checkOverlap(arrows,wolf_7.wolf)) wolf_7.wolf.kill();
+    if(checkOverlap(arrows,wolf_8.wolf)) wolf_8.wolf.kill();
+    if(checkOverlap(arrows,wolf_9.wolf)) wolf_9.wolf.kill();
+    if(checkOverlap(arrows,wolf_10.wolf)) wolf_10.wolf.kill();
+
+// this.arrWolfs.forEach(function(item){
+// if(checkOverlap(arrows,item.wolf)) item.wolf.kill();	
+// });
 
 var a = this.time.now - timeStartGame;
 	if (a >= 2000 && a <4000 || a>= 6000 && a <8000){
@@ -207,8 +218,6 @@ var a = this.time.now - timeStartGame;
     	item.wolf.animations.play('walk_R');
     });
 	};
-
-	if (player.x == 3600) this.game.state.start("Boot");
 };
 
 Game.LevelTwo.prototype.killCristal = function(player, cristal){
@@ -263,7 +272,7 @@ Game.LevelTwo.prototype.shootArrowLeft = function(){
 };
 
 Game.LevelTwo.prototype.nextLevel = function(){
-    this.game.state.start("LevelTwo");
+    this.game.state.start("Win");
 };
 
 

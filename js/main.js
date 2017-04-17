@@ -14,7 +14,7 @@ Game.Main = function(game){
 	this.shootTime = 0;
 	var arrows;
 	this.lastDirection = true;
-	var lastY, sound, timeStartGame;
+	var lastY, sound, timeStartGame, a;
 	this.rightDirectionWolf = false;
     this.level = 1;
     this.arrWolfs = [];
@@ -58,8 +58,6 @@ Game.Main.prototype.create = function(game){
 	player.animations.add('shooting', [12,13,14,15], 4,true);
 	this.camera.follow(player);
 	controls={
-		right:this.input.keyboard.addKey(Phaser.Keyboard.D ),
-		left:this.input.keyboard.addKey(Phaser.Keyboard.A ),
 		up:this.input.keyboard.addKey(Phaser.Keyboard.W),
 		shoot:this.input.keyboard.addKey(Phaser.Keyboard.Q)
 	};
@@ -172,11 +170,17 @@ Game.Main.prototype.update = function(){
 		
 	};
 
-	this.arrWolfs.forEach(function(item){
-	if(checkOverlap(arrows,item.wolf)) item.wolf.kill();	
-	});	
 
-var a = this.time.now - timeStartGame;
+    if(checkOverlap(arrows,wolf_0.wolf)) wolf_0.wolf.kill();
+    if(checkOverlap(arrows,wolf_1.wolf)) wolf_1.wolf.kill();
+    if(checkOverlap(arrows,wolf_2.wolf)) wolf_2.wolf.kill();
+
+
+	// this.arrWolfs.forEach(function(item){
+	// if(checkOverlap(arrows,item.wolf)) item.wolf.kill();	
+	// });	
+
+	a = this.time.now - timeStartGame;
 	if (a >= 2000 && a <4000 || a>= 6000 && a <8000){
 		this.arrWolfs.forEach(function(item){
     	 item.wolf.animations.play('walk_L');
@@ -267,5 +271,5 @@ checkOverlap = function(spriteA, spriteB){
     var boundsA = spriteA.getBounds();
     var boundsB = spriteB.getBounds();
     return Phaser.Rectangle.intersects(boundsA,boundsB);
-};
+}; 
 
