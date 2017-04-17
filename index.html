@@ -9,6 +9,7 @@
    <script src="js/preload.js"></script>
    <script src="js/main.js"></script>
    <script src="js/death.js"></script>
+   <script src="js/win.js"></script>
    <script src="js/levelTwo.js"></script>
    <link rel="stylesheet" type="text/css" href="css/main.css">
 
@@ -23,6 +24,7 @@
     game.state.add("Preload", Game.Preload);
     game.state.add("Main", Game.Main);
     game.state.add("Death", Game.Death);
+    game.state.add("Win", Game.Win);
     game.state.add("LevelTwo", Game.LevelTwo);
     game.state.start("Boot");
   	})();
