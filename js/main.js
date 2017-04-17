@@ -14,9 +14,8 @@ Game.Main = function(game){
 	this.shootTime = 0;
 	var arrows;
 	this.lastDirection = true;
-	var lastY, sound, timeStartGame, a;
+	var lastY, sound, timeStartGame;
 	this.rightDirectionWolf = false;
-    this.level = 1;
     this.arrWolfs = [];
 };
 
@@ -124,7 +123,6 @@ Game.Main.prototype.update = function(){
 	game.physics.arcade.collide(player, wolf_2.wolf, this.removeLife, null, this);
 	game.physics.arcade.overlap(player, cristals, this.killCristal, null, this);
 
-
 	if (cursors.left.isDown){
 		if ( player.body.onFloor() || player.body.touching.down) {
 			player.animations.play('left');
@@ -180,7 +178,7 @@ Game.Main.prototype.update = function(){
 	// if(checkOverlap(arrows,item.wolf)) item.wolf.kill();	
 	// });	
 
-	a = this.time.now - timeStartGame;
+	var a = this.time.now - timeStartGame;
 	if (a >= 2000 && a <4000 || a>= 6000 && a <8000){
 		this.arrWolfs.forEach(function(item){
     	 item.wolf.animations.play('walk_L');
@@ -246,6 +244,7 @@ Game.Main.prototype.shootArrowLeft = function(){
 
 Game.Main.prototype.nextLevel = function(){
 	sound.stop();
+	window.scoreCristals = this.score;
     this.game.state.start("LevelTwo");
 };
 
@@ -257,7 +256,6 @@ EnemyWolf = function(index,game,x,y,distance){
 	this.wolf.animations.add('walk_L', [5,6,7,8],8,true);
 	this.wolf.anchor.setTo(0.5,0.5);
 	this.wolf.name = index.toString();
-
 	game.physics.enable(this.wolf,Phaser.Physics.ARCADE);
 	this.wolf.body.immovable = true;
 	this.wolf.body.collideWorldBounds = true;

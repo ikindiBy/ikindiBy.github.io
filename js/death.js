@@ -9,7 +9,7 @@ Game.Death.prototype.create = function(){
     	{font:"48px Arial", fill:"#fff", align:"center"});
     deathText.anchor.set(0.5);
     button = game.add.button(game.world.centerX, game.world.centerY+80, 'button',
-    	this.restart,this,this,this);
+    this.restart,this,this,this);
     this.camera.follow(deathText);
     this.camera.follow(button);
     button.anchor.set(0.5);

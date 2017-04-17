@@ -4,7 +4,7 @@ Game.LevelTwo = function(game){
 	var platforms;
 	var cursors;
 	var jumpButton;
-	var cristals, scoreCrist;
+	var cristals;
 	this.score = 0;
 	var scoreText;
 	var lives;
@@ -18,7 +18,6 @@ Game.LevelTwo = function(game){
 	var lastY, sound, timeStartGame;
 	this.arrWolfs=[];
 	this.rightDirectionWolf = false;
-    this.level = 1;
 };
 
 	
@@ -29,7 +28,6 @@ Game.LevelTwo.prototype.create = function(game){
 	game.stage.backgroundColor = '#85b5e1';
 	sound = game.add.audio('mainTheme');
 	sound.loopFull(0.8);
-
 
 	map = game.add.tilemap('mapTwo',64,64); 
     map.addTilesetImage('tileset');
@@ -89,7 +87,7 @@ Game.LevelTwo.prototype.create = function(game){
 	scoreCrist = game.add.group();
 	scoreCrist.create(20, 10,'cristal');
 	scoreCrist.scale.setTo(0.7,0.7);
-	scoreText = game.add.text(45,10, ": "+this.score +"", 
+	scoreText = game.add.text(45,10, ": "+window.scoreCristals +"", 
 		{font:"24px Arial", fill:"#fff", align:"center"});
 	scoreText.fixedToCamera = true;
 	scoreCrist.fixedToCamera = true;
@@ -142,6 +140,14 @@ Game.LevelTwo.prototype.update = function(){
 	game.physics.arcade.collide(player, wolf_0.wolf, this.removeLife, null, this);
 	game.physics.arcade.collide(player, wolf_1.wolf, this.removeLife, null, this);
 	game.physics.arcade.collide(player, wolf_2.wolf, this.removeLife, null, this);
+	game.physics.arcade.collide(player, wolf_3.wolf, this.removeLife, null, this);
+	game.physics.arcade.collide(player, wolf_4.wolf, this.removeLife, null, this);
+	game.physics.arcade.collide(player, wolf_5.wolf, this.removeLife, null, this);
+	game.physics.arcade.collide(player, wolf_6.wolf, this.removeLife, null, this);
+	game.physics.arcade.collide(player, wolf_7.wolf, this.removeLife, null, this);
+	game.physics.arcade.collide(player, wolf_8.wolf, this.removeLife, null, this);
+	game.physics.arcade.collide(player, wolf_9.wolf, this.removeLife, null, this);
+	game.physics.arcade.collide(player, wolf_10.wolf, this.removeLife, null, this);
 	game.physics.arcade.overlap(player, cristals, this.killCristal, null, this);
 
 
@@ -191,7 +197,6 @@ Game.LevelTwo.prototype.update = function(){
 		
 	};
 
-
     if(checkOverlap(arrows,wolf_0.wolf)) wolf_0.wolf.kill();
     if(checkOverlap(arrows,wolf_1.wolf)) wolf_1.wolf.kill();
     if(checkOverlap(arrows,wolf_2.wolf)) wolf_2.wolf.kill();
@@ -203,10 +208,6 @@ Game.LevelTwo.prototype.update = function(){
     if(checkOverlap(arrows,wolf_8.wolf)) wolf_8.wolf.kill();
     if(checkOverlap(arrows,wolf_9.wolf)) wolf_9.wolf.kill();
     if(checkOverlap(arrows,wolf_10.wolf)) wolf_10.wolf.kill();
-
-// this.arrWolfs.forEach(function(item){
-// if(checkOverlap(arrows,item.wolf)) item.wolf.kill();	
-// });
 
 var a = this.time.now - timeStartGame;
 	if (a >= 2000 && a <4000 || a>= 6000 && a <8000){
@@ -223,13 +224,13 @@ var a = this.time.now - timeStartGame;
 Game.LevelTwo.prototype.killCristal = function(player, cristal){
     cristal.kill();
     this.score++;
-    scoreText.text = ": "+ this.score;
+    var overalScore = window.scoreCristals + this.score;
+    scoreText.text = ": "+ overalScore;
 	};
 
 Game.LevelTwo.prototype.killArrow = function(arrow, layer){
     arrow.kill();
 	};
-
 
 Game.LevelTwo.prototype.removeLife = function(player, enemy){
 	if(lives.children.length == 1){
@@ -272,6 +273,7 @@ Game.LevelTwo.prototype.shootArrowLeft = function(){
 };
 
 Game.LevelTwo.prototype.nextLevel = function(){
+	sound.stop();
     this.game.state.start("Win");
 };
 

@@ -18,6 +18,8 @@ Game.Preload.prototype.preload = function(){
 
 	this.load.audio('mainTheme', 'sound/theme.mp3');
 
+	window.scoreCristals = 0;
+
 
 	game.stage.backgroundColor = '#85b5e1';
 };
